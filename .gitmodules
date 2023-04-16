@@ -10,3 +10,6 @@
 	path = meta-openembedded
 	url = git://git.openembedded.org/meta-openembedded
 	branch = langdale
+[submodule "meta-rust"]
+	path = meta-rust
+	url = git@github.com:meta-rust/meta-rust.git
