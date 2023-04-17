@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/build-*/buildhistory/**": true,
+			"**/build-*/cache/**": true,
+			"**/build-*/tmp/**": true,
+			"**/sstate-cache/**": true,
+		},
+		"files.watcherExclude": {
+			"**/build-*/buildhistory/**": true,
+			"**/build-*/cache/**": true,
+			"**/build-*/tmp/**": true,
+			"**/sstate-cache/**": true,
+		},
+	}
+}
