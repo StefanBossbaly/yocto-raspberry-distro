@@ -11,7 +11,7 @@ Yocto allows the building of an embedded Linux distro that is tailor made for a 
 to support other SoC/architectures if needed in the future (and given the prices and availability of pis, it is a very real possibility).
 While it is certainly possible to use a stripped down distro like Raspberry Pi OS Lite, the image is still 300MB+ and still has to be
 configured inorder to run you application software. With Yotco all the configuration is handled during the Bitbake process and the
-output is a configured and ready to deploy image with all the software you need an nothing more.
+output is a configured and ready to deploy image with all the software you need and nothing more.
 
 ## Docker
 
