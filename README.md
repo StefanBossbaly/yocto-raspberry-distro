@@ -5,6 +5,14 @@ The repository will use git submodules to reference the `meta-*` layers and incl
 that all layers are added correctly to the project. In the future I hope to add some convince scripts that will be able
 to configure the build area bases on user select criteria.
 
+## Why Yocto?
+
+Yocto allows the building of an embedded Linux distro that is tailor made for a specific needs and platform while also being versatile
+to support other SoC/architectures if needed in the future (and given the prices and availability of pis, it is a very real possibility).
+While it is certainly possible to use a stripped down distro like Raspberry Pi OS Lite, the image is still 300MB+ and still has to be
+configured inorder to run you application software. With Yotco all the configuration is handled during the Bitbake process and the
+output is a configured and ready to deploy image with all the software you need an nothing more.
+
 ## Docker
 
 Currently I use Fedora for my personal laptop (which is not a supported build environment). Regardless if you use a supported
@@ -25,6 +33,13 @@ source ./poky/oe-init-build-env build-pi4-64
 ```
 
 Once that script is run, you bash shell should now have everything it needs to start Bitbaking.
+
+## Building
+
+To build an image simply run the `bitbake` command. Currently there are two images in the `meta-application` layer:
+* `transit-board-dev-image`: Image that contains application and debug tools like gdb, objdump, and allows paswordless ssh
+root access to the device.
+* `transit-board-prod-image`: Image that contains application and necessary dependencies.
 
 ## Emulator
 
