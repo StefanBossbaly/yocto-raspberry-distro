@@ -1,9 +1,8 @@
-SUMMARY = "A console-only image that fully supports the target device \
-hardware."
+SUMMARY = "Transit board production image"
 
 IMAGE_FEATURES:append = " allow-empty-password allow-root-login debug-tweaks empty-root-password ssh-server-dropbear"
 
-IMAGE_INSTALL:append = " rust-hello-world"
+IMAGE_INSTALL:append = " rpi-rgb-led-matrix"
 
 LICENSE = "MIT"
 
