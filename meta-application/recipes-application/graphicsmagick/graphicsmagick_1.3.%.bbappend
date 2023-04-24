@@ -1,0 +1,1 @@
+PACKAGECONFIG += " bzip2 ttf jpeg jp2 lzma cpp tiff webp wmf"
