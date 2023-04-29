@@ -6,12 +6,12 @@ inherit cargo
 # DEFAULT_PREFERENCE = "-1"
 
 # how to get septa-api could be as easy as but default to a git checkout:
-# SRC_URI += "crate://crates.io/septa-api/0.2.0"
+# SRC_URI += "crate://crates.io/septa-api/0.3.0"
 SRC_URI += "git://git@github.com/StefanBossbaly/septa-api.git;protocol=ssh;nobranch=1"
-SRCREV = "13b41eb3c5d836794eb6bd8eeea5eeb5097057ef"
+SRCREV = "c374e1ffe247cf68fa53704b74c84df32b691083"
 S = "${WORKDIR}/git"
 CARGO_SRC_DIR = ""
-PV:append = ".AUTOINC+13b41eb3c5"
+PV:append = ".AUTOINC+c374e1ffe2"
 
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
