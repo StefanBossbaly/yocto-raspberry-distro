@@ -1,0 +1,74 @@
+DISTRO ?= "poky"
+
+# Share the sstate-cache among all builds
+SSTATE_DIR ?= "${@os.path.abspath(os.path.join("${TOPDIR}", os.pardir, "sstate-cache"))}"
+
+#
+# Package Management configuration
+#
+# This variable lists which packaging formats to enable. Multiple package backends
+# can be enabled at once and the first item listed in the variable will be used
+# to generate the root filesystems.
+# Options are:
+#  - 'package_deb' for debian style deb files
+#  - 'package_ipk' for ipk files are used by opkg (a debian style embedded package manager)
+#  - 'package_rpm' for rpm style packages
+# E.g.: PACKAGE_CLASSES ?= "package_rpm package_deb package_ipk"
+PACKAGE_CLASSES ?= "package_ipk"
+
+#
+# Extra image configuration defaults
+#
+# The EXTRA_IMAGE_FEATURES variable allows extra packages to be added to the generated
+# images. Some of these options are added to certain image types automatically. The
+# variable can contain the following options:
+#  "dbg-pkgs"       - add -dbg packages for all installed packages
+#                     (adds symbol information for debugging/profiling)
+#  "src-pkgs"       - add -src packages for all installed packages
+#                     (adds source code for debugging)
+#  "dev-pkgs"       - add -dev packages for all installed packages
+#                     (useful if you want to develop against libs in the image)
+#  "ptest-pkgs"     - add -ptest packages for all ptest-enabled packages
+#                     (useful if you want to run the package test suites)
+#  "tools-sdk"      - add development tools (gcc, make, pkgconfig etc.)
+#  "tools-debug"    - add debugging tools (gdb, strace)
+#  "eclipse-debug"  - add Eclipse remote debugging support
+#  "tools-profile"  - add profiling tools (oprofile, lttng, valgrind)
+#  "tools-testapps" - add useful testing tools (ts_print, aplay, arecord etc.)
+#  "debug-tweaks"   - make an image suitable for development
+#                     e.g. ssh root access has a blank password
+# There are other application targets that can be used here too, see
+# meta/classes/image.bbclass and meta/classes/core-image.bbclass for more details.
+# We default to enabling the debugging tweaks.
+EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
+
+#
+# Additional image features
+#
+# The following is a list of additional classes to use when building images which
+# enable extra features. Some available options which can be included in this variable
+# are:
+#   - 'buildstats' collect build statistics
+USER_CLASSES ?= "buildstats"
+
+# CONF_VERSION is increased each time build/conf/ changes incompatibly and is used to
+# track the version of this file when it was generated. This can safely be ignored if
+# this doesn't mean anything to you.
+CONF_VERSION = "2"
+
+TOOLCHAIN ?= "clang"
+
+# From https://github.com/kraj/meta-clang/commit/8a91c234685dfee4e3c051759e13443b6fcb29a6
+# Need to use GNU binutils for kernel recipes
+OBJCOPY:pn-linux-raspberrypi:toolchain-clang = "${HOST_PREFIX}objcopy"
+
+# Setup Rust version
+RUST_VERSION ?= "1.66.1"
+PREFERRED_VERSION_cargo ?= "${RUST_VERSION}"
+PREFERRED_VERSION_cargo-native ?= "${RUST_VERSION}"
+PREFERRED_VERSION_libstd-rs ?= "${RUST_VERSION}"
+PREFERRED_VERSION_rust ?= "${RUST_VERSION}"
+PREFERRED_VERSION_rust-cross-${TARGET_ARCH} ?= "${RUST_VERSION}"
+PREFERRED_VERSION_rust-llvm ?= "${RUST_VERSION}"
+PREFERRED_VERSION_rust-llvm-native ?= "${RUST_VERSION}"
+PREFERRED_VERSION_rust-native ?= "${RUST_VERSION}"

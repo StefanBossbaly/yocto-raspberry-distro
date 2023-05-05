@@ -20,3 +20,8 @@ BBLAYERS ?= " \
   ${YOCTOROOT}/meta-rust \
   ${YOCTOROOT}/meta-application \
   "
+
+BBLAYERS_NON_REMOVABLE ?= " \
+  ${YOCTOROOT}/poky/meta \
+  ${YOCTOROOT}/poky/meta-poky \
+  "

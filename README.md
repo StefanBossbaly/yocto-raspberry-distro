@@ -26,10 +26,10 @@ docker run --rm -it --net=host -v $REPO_ROOT:/workdir crops/poky --workdir=/work
 
 ## Setup
 
-To get started, simply `source` the `poky/oe-init-build-env` script in the Docker container with the desired build directory, like so:
+To get started, simply `source` the `init-build` script in the Docker container with the desired target directory, like so:
 
 ```
-source ./poky/oe-init-build-env build-pi4-64
+source init-build raspberrypi0-wifi
 ```
 
 Once that script is run, you bash shell should now have everything it needs to start Bitbaking.

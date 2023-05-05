@@ -1,0 +1,45 @@
+#!/bin/sh
+
+if [ -z "$BASH_VERSION" -a -z "$ZSH_VERSION" ] ; then
+  echo This sript only works with bash or zsh as the interactive shell.
+  echo Please retry with bash or zsh.
+  return 1
+fi
+
+directory="meta-raspberrypi/conf/machine"
+if [ ! -d "$directory" ]; then
+  echo "Error: $directory is not a directory. Did gitsubmodule setup correctly?" >&2
+  exit 1
+fi
+
+targets=()
+for file in $directory/*; do
+  if [ -f "$file" ]; then
+      filename="${file##*/}"
+      filename="${filename%.*}"
+      targets+=($filename)
+  fi
+done
+
+if [ ${#targets[@]} -eq 0 ]; then
+  echo "Error: No targets found in $directory" >&2
+  exit 1
+fi
+
+found_target=false
+for target in "${targets[@]}"; do
+  if [[ $target == $1 ]]; then
+    export TEMPLATECONF=$(pwd)/meta-application/conf
+    export MACHINE=$target
+    source poky/oe-init-build-env $target-build
+    found_target=true
+  fi
+done
+
+if [ "$found_target" = false ]; then
+  echo "Error: Target $1 not found" >&2
+  echo "Available targets:" >&2
+  for target in "${targets[@]}"; do
+    echo "  $target" >&2
+  done
+fi
