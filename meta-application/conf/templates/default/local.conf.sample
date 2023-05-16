@@ -56,19 +56,4 @@ USER_CLASSES ?= "buildstats"
 # this doesn't mean anything to you.
 CONF_VERSION = "2"
 
-TOOLCHAIN ?= "clang"
-
-# From https://github.com/kraj/meta-clang/commit/8a91c234685dfee4e3c051759e13443b6fcb29a6
-# Need to use GNU binutils for kernel recipes
-OBJCOPY:pn-linux-raspberrypi:toolchain-clang = "${HOST_PREFIX}objcopy"
-
-# Setup Rust version
-RUST_VERSION ?= "1.66.1"
-PREFERRED_VERSION_cargo ?= "${RUST_VERSION}"
-PREFERRED_VERSION_cargo-native ?= "${RUST_VERSION}"
-PREFERRED_VERSION_libstd-rs ?= "${RUST_VERSION}"
-PREFERRED_VERSION_rust ?= "${RUST_VERSION}"
-PREFERRED_VERSION_rust-cross-${TARGET_ARCH} ?= "${RUST_VERSION}"
-PREFERRED_VERSION_rust-llvm ?= "${RUST_VERSION}"
-PREFERRED_VERSION_rust-llvm-native ?= "${RUST_VERSION}"
-PREFERRED_VERSION_rust-native ?= "${RUST_VERSION}"
+LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"

@@ -1,1 +1,1 @@
-DEPENDS:append = " openssl-native pkgconfig-native"
+DEPENDS:append = " openssl openssl-native pkgconfig-native"

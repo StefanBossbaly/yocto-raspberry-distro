@@ -29,7 +29,7 @@ fi
 found_target=false
 for target in "${targets[@]}"; do
   if [[ $target == $1 ]]; then
-    export TEMPLATECONF=$(pwd)/meta-application/conf
+    export TEMPLATECONF=$(pwd)/meta-application/conf/templates/default
     export MACHINE=$target
     source poky/oe-init-build-env $target-build
     found_target=true

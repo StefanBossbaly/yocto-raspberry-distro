@@ -10,15 +10,21 @@ S = "${WORKDIR}/git"
 
 inherit python3native
 
+DEPENDS:append = " graphicsmagick libwebp"
+RDEPENDS:${PN} += " graphicsmagick-native"
+
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 do_compile() {
     oe_runmake
+
+    oe_runmake -C "${S}/utils" led-image-viewer
 }
 
 do_install() {
     install -d ${D}/usr/bin
     install -T ${B}/examples-api-use/demo ${D}/usr/bin/rgb-matrix-demo
+    install -T ${B}/utils/led-image-viewer ${D}/usr/bin/led-image-viewer
 
     install -d ${D}/usr/lib
     install -m 755 ${B}/lib/librgbmatrix.so.1 ${D}/usr/lib/
