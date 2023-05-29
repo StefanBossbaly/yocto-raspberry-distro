@@ -57,3 +57,6 @@ USER_CLASSES ?= "buildstats"
 CONF_VERSION = "2"
 
 LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"
+
+# Enable systemd, replace systemv as the init service manager
+INIT_MANAGER = "systemd"
