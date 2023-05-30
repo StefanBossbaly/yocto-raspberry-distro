@@ -17,5 +17,6 @@
 			"**/build-*/tmp/**": true,
 			"**/sstate-cache/**": true,
 		},
+		"search.followSymlinks": false
 	}
 }
