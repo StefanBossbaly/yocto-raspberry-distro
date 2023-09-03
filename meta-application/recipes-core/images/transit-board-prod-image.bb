@@ -1,21 +1,41 @@
 SUMMARY = "Transit board production image"
+LICENSE = "GPL"
 
 IMAGE_FEATURES:append = " allow-empty-password allow-root-login empty-root-password ssh-server-dropbear"
 
-#IMAGE_INSTALL:append = " rpi-rgb-led-matrix"
+IMAGE_INSTALL:append = " rustic-pixel-display"
 
-LICENSE = "MIT"
+# Switch off on-board sound 
+RPI_EXTRA_CONFIG = "\
+    dtparam=audio=off \
+    dtoverlay=disable-bt \
+"
 
-# Enable UART on RaspberryPi 0 WiFi and 3
-ENABLE_UART = "1"
+# Autoload kernel module
+KERNEL_MODULE_AUTOLOAD += "\
+    uio_pdrv_genirq \
+    uio \
+    nvmem_rmem \
+    fuse \
+"
 
 # Disable vc4graphics
 DISABLE_VC4GRAPHICS = "1"
 
-# Disable bluetooth, screen, touchsceen and alsa
-MACHINE_FEATURES:remove = "bluetooth"
-MACHINE_FEATURES:remove = "screen"
-MACHINE_FEATURES:remove = "touchscreen"
-MACHINE_FEATURES:remove = "alsa"
+# Disable rpi boot logo
+DISABLE_RPI_BOOT_LOGO = "1"
 
-inherit core-image
+# Disable UART
+ENABLE_UART = "0"
+
+# Isolate the last CPU
+# TODO(Stefan): Support platforms with less than 4 cores
+ISOLATED_CPUS = "3"
+
+DISABLE_OVERSCAN = "1"
+
+GPU_MEM_256 = "16"
+GPU_MEM_512 = "16"
+GPU_MEM_1024 = "16"
+
+require recipes-core/images/core-image-base.bb
